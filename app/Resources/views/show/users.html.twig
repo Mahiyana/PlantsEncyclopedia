@@ -1,0 +1,6 @@
+<h1>Użytkownicy</h1>
+<ul>
+{% for user in users %}
+  <li><a href = '/show/user/{{ user.ID}}'>{{ user.login }} </a></li>
+{% endfor %}
+</ul>
