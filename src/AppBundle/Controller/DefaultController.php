@@ -30,9 +30,9 @@ class DefaultController extends Controller
     public function addUser()
     {
         $user = new User();
-        $user->setLogin('listek');
-        $user->setPassword('haslo_listka');
-        $user->setEmail('listek@mail.com');
+        $user->setLogin('admin');
+        $user->setPassword('admin');
+        $user->setEmail('admin@admin.com');
 
         $em = $this->getDoctrine()->getManager();
 
