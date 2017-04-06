@@ -6,8 +6,9 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use AppBundle\Entity\User;
+use AppBundle\Entity\Role;
 use Symfony\Component\HttpFoundation\Response;
-
+#use Symfony\Component\Security\Core\Role\Role;
 
 class DefaultController extends Controller
 {
@@ -29,10 +30,13 @@ class DefaultController extends Controller
 
     public function addUser()
     {
+        $role = new Role("ROLE_GALLERY_ADD");
         $user = new User();
-        $user->setLogin('admin');
-        $user->setPassword('admin');
-        $user->setEmail('admin@admin.com');
+        $user->setUsername('tru_gal_admin');
+        $user->setPlainPassword('admin');
+        $user->setEmail('tru_gal_admin@admin.com');
+        $user->setEnabled(true);
+        $user->addRole($role);
 
         $em = $this->getDoctrine()->getManager();
 
@@ -74,6 +78,17 @@ class DefaultController extends Controller
        return $this->render('show/user.html.twig', array(
            'user' => $user,
        ));
+ 
+    }
+
+   /**
+     * @Route("/add/gallery")
+     */
+
+    public function addGallery()
+    {
+      
+       return $this->render('add/gallery.html.twig', array());
  
     }
 

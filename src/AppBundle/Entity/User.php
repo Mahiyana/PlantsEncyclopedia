@@ -17,7 +17,9 @@ class User extends BaseUser
      */
     protected $id;
 
-    /**
-     * @ORM\Column(type="string", length=50)
-     */
+    public function __construct()
+    {
+        $this->roles = array();
+    }
+
 }

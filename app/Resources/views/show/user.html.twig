@@ -1,8 +1,8 @@
 <h1>Użytkownik</h1>
 <table>
   <tr>
-    <th>Login</th>
-    <th> {{ user.login }} </th>
+    <th>Username</th>
+    <th> {{ user.username }} </th>
   </tr>
   <tr>
     <th>Haslo</th>
@@ -12,6 +12,17 @@
     <th>Email</th>
     <th> {{ user.email }} </th>
   </tr>
+  <tr>
+    <th>Roles</th>
+    <th> 
+      <ul>
+         {% for role in user.roles %}
+         <li> {{ role }} </li>
+        {% endfor %}
+      </ul>
+    </th>
+  </tr>
+
 </table>
 
 <a href='/show/users'>Powrót do listy użytkowników </a>
