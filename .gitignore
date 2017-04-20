@@ -46,3 +46,17 @@
 
 # Backup entities generated with doctrine:generate:entities command
 */Entity/*~
+
+#VIM IGNORE
+# swap
+[._]*.s[a-v][a-z]
+[._]*.sw[a-p]
+[._]s[a-v][a-z]
+[._]sw[a-p]
+# session
+Session.vim
+# temporary
+.netrwhist
+*~
+# auto-generated tag files
+tags

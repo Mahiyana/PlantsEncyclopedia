@@ -23,7 +23,7 @@ class Role implements RoleInterface
      */
     private $id;
     /**
-     * @ORM\Column(type="string", name="role", unique="true", length="70")
+     * @ORM\Column(type="string", name="role", unique=true, length=70)
      */
     private $role;
     /**
@@ -50,5 +50,28 @@ class Role implements RoleInterface
     {
         return (string) $this->role;
     }
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set role
+     *
+     * @param string $role
+     *
+     * @return Role
+     */
+    public function setRole($role)
+    {
+        $this->role = $role;
+
+        return $this;
+    }
 }
-?>
