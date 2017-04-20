@@ -1,0 +1,14 @@
+<h1>{{ gallery.name }}</h1>
+<h3>{{ gallery.description }}</h3>
+{% for image in gallery.images %}
+<table>
+  <tr>
+    <th>
+      {{ image.name }}</br>
+      <img src="{{ asset('images/' ~ image.getFullSize) }}" width="80px"/>
+    </th>
+  </tr>
+</table>
+{% endfor %}
+
+<a href='/show/galleries'>Powrót do listy galerii </a>

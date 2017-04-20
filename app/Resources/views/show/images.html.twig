@@ -16,10 +16,14 @@
     <th> {{ image.gallery.name }} </th>
   </tr>
   <tr>
+    <th>Autor</th>
+    <th> {{ image.author.username }} </th>
+  </tr>
+  <tr>
     <th>Obrazek</th>
     <th> <img src="{{ asset('images/' ~ image.getFullSize) }}" width="80px"/> </th>
   </tr>
-
+ 
 </table>
 {% endfor %}
 </ul>

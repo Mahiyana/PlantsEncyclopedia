@@ -16,6 +16,7 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
+use Doctrine\Common\Collections\ArrayCollection;
 #use Symfony\Component\Security\Core\Role\Role;
 
 class DefaultController extends Controller
@@ -40,7 +41,7 @@ class DefaultController extends Controller
     {
         $role = new Role("ROLE_GALLERY_ADD");
         $user = new User();
-        $user->setUsername('tru_gal_admin');
+        $user->setUsername('gal_admin');
         $user->setPlainPassword('admin');
         $user->setEmail('tru_gal_admin@admin.com');
         $user->setEnabled(true);
@@ -110,7 +111,13 @@ class DefaultController extends Controller
         $em->persist($gallery);
         $em->flush();
 
-        //return $this->redirectToRoute('show/galleries');
+       $repository = $this->getDoctrine()->getRepository('AppBundle:Gallery');
+       $galleries = $repository->findAll(); 
+
+       return $this->render('show/galleries.html.twig', array(
+           'galleries' => $galleries,
+       ));
+
     }
 
         return $this->render('add/gallery.html.twig', array(
@@ -123,13 +130,11 @@ class DefaultController extends Controller
      * @Route("/show/galleries")
      */
 
-    public function showGallery()
+    public function showGalleries()
     {
      
        $repository = $this->getDoctrine()->getRepository('AppBundle:Gallery');
        $galleries = $repository->findAll(); 
-    
-       //print_r($galleries);
 
        return $this->render('show/galleries.html.twig', array(
            'galleries' => $galleries,
@@ -180,13 +185,19 @@ class DefaultController extends Controller
         // instead of its contents
         $image->setFullSize($fileName);        
         $image->setSmallSize($fileName);        
-        $image->setAuthor($this->get('security.context')->getToken()->getUser());       
+        $image->setAuthor($this->container->get('security.token_storage')->getToken()->getUser());
 
         $em = $this->getDoctrine()->getManager();
         $em->persist($image);
         $em->flush();
 
-        //return $this->redirectToRoute('show/galleries');
+        $repository = $this->getDoctrine()->getRepository('AppBundle:Image');
+        $images = $repository->findAll(); 
+
+        return $this->render('show/images.html.twig', array(
+            'images' => $images,
+        ));
+
     }
 
         return $this->render('add/image.html.twig', array(
@@ -204,12 +215,38 @@ class DefaultController extends Controller
      
        $repository = $this->getDoctrine()->getRepository('AppBundle:Image');
        $images = $repository->findAll(); 
-    
-       //print_r($galleries);
 
        return $this->render('show/images.html.twig', array(
            'images' => $images,
        ));
+    }
+
+    /**
+     * @Route("/test")
+     */
+
+    public function testUser()
+    {
+       $author = $this->container->get('security.token_storage')->getToken()->getUser();
+       return $this->render('lucky/number.html.twig', array(
+           'author' => $author,
+       ));
+    }
+
+    /**
+     * @Route("/show/gallery/{gallery_id}", requirements={"page": "\d+"})
+     */
+
+    public function showGallery(Request $request)
+    {
+       $repository = $this->getDoctrine()->getRepository('AppBundle:Gallery');
+       $gallery_id = $request->attributes->get('gallery_id');
+       $gallery = $repository->findOneById($gallery_id);
+      
+       return $this->render('show/gallery.html.twig', array(
+           'gallery' => $gallery,
+       ));
+ 
     }
 
 }

@@ -5,7 +5,7 @@
 <table>
   <tr>
     <th>Nazwa</th>
-    <th> {{ gallery.name }} </th>
+    <th> <a href = '/show/gallery/{{ gallery.ID}}'>{{ gallery.name }} </a>
   </tr>
   <tr>
     <th>Opis</th>
@@ -24,3 +24,5 @@
 </table>
 {% endfor %}
 </ul>
+
+<a href='/add/gallery'>Dodaj nową galerię</a>
