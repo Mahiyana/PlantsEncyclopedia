@@ -2,6 +2,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity
@@ -31,19 +32,31 @@ class Image
      */
     private $author;
 
+    /**
+     * @Assert\NotBlank()
+     * @ORM\Column(type="string", length=100)
+     */
+    private $name;
+
      /**
      * @ORM\Column(type="text")
      */
     private $description;
 
    /**
-    * @ORM\Column(type="integer")
+    * @ORM\Column(type="string")
+    *
+    * @Assert\NotBlank(message="Please, upload the product brochure as a PDF file.")
+    * @Assert\Image()
     */
    private $full_size; 
    
    /**
-    * @ORM\Column(type="integer")
-    */
+     * @ORM\Column(type="string")
+     *
+     * @Assert\NotBlank(message="Please, upload the product brochure as a PDF file.")
+     * @Assert\Image()
+     */
    private $small_size; 
 
     /**
@@ -174,5 +187,29 @@ class Image
     public function getAuthor()
     {
         return $this->author;
+    }
+
+    /**
+     * Set name
+     *
+     * @param string $name
+     *
+     * @return Image
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * Get name
+     *
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
     }
 }

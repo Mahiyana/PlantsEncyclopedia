@@ -1,0 +1,26 @@
+<h1>Galerie</h1>
+<ul>
+
+{% for gallery in galleries %}
+<table>
+  <tr>
+    <th>Nazwa</th>
+    <th> {{ gallery.name }} </th>
+  </tr>
+  <tr>
+    <th>Opis</th>
+    <th> {{ gallery.getDescription2 }} </th>
+  </tr>
+  <tr>
+    <th>Images</th>
+    <th> 
+      <ul>
+         {% for image in gallery.images %}
+         <li> {{ image.name }} </li>
+        {% endfor %}
+      </ul>
+    </th>
+  </tr>
+</table>
+{% endfor %}
+</ul>

@@ -3,6 +3,7 @@ namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * @ORM\Entity
@@ -33,7 +34,13 @@ class Gallery
      * @ORM\OneToMany(targetEntity="Image", mappedBy="gallery")
      */
     private $images;
+    
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $cover_image_id = null; 
 
+    
     public function __construct()
     {
         $this->images = new ArrayCollection();
@@ -47,6 +54,11 @@ class Gallery
     public function getId()
     {
         return $this->id;
+    }
+
+    public function getDescription2()
+    {
+        return $this->description;
     }
 
     /**
@@ -129,5 +141,29 @@ class Gallery
     public function getImages()
     {
         return $this->images;
+    }
+
+    /**
+     * Set coverImageId
+     *
+     * @param integer $coverImageId
+     *
+     * @return Gallery
+     */
+    public function setCoverImageId($coverImageId)
+    {
+        $this->cover_image_id = $coverImageId;
+
+        return $this;
+    }
+
+    /**
+     * Get coverImageId
+     *
+     * @return integer
+     */
+    public function getCoverImageId()
+    {
+        return $this->cover_image_id;
     }
 }

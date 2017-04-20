@@ -6,8 +6,15 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use AppBundle\Entity\User;
+use AppBundle\Entity\Gallery;
+use AppBundle\Entity\Image;
 use AppBundle\Entity\Role;
 use Symfony\Component\HttpFoundation\Response;
+
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
+
 #use Symfony\Component\Security\Core\Role\Role;
 
 class DefaultController extends Controller
@@ -39,11 +46,7 @@ class DefaultController extends Controller
         $user->addRole($role);
 
         $em = $this->getDoctrine()->getManager();
-
-        // tells Doctrine you want to (eventually) save the Product (no queries yet)
         $em->persist($user);
-
-        // actually executes the queries (i.e. the INSERT query)
         $em->flush();
 
         return new Response('Dodano nowego użytkownika o ID '.$user->getId());
@@ -85,12 +88,53 @@ class DefaultController extends Controller
      * @Route("/add/gallery")
      */
 
-    public function addGallery()
+    public function addGallery(Request $request)
     {
-      
-       return $this->render('add/gallery.html.twig', array());
- 
+     
+       $gallery = new Gallery();
+       $form = $this->createFormBuilder($gallery)
+            ->add('name', TextType::class)
+            ->add('description', TextType::class)
+            ->add('save', SubmitType::class, array('label' => 'Dodaj galerię'))
+            ->getForm();
+       
+   
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+        // $form->getData() holds the submitted values
+        // but, the original `$task` variable has also been updated
+        $task = $form->getData();
+        
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($gallery);
+        $em->flush();
+
+        //return $this->redirectToRoute('show/galleries');
+    }
+
+        return $this->render('add/gallery.html.twig', array(
+            'form' => $form->createView(),
+        ));
+
+    }
+
+    /**
+     * @Route("/show/galleries")
+     */
+
+    public function showGallery()
+    {
+     
+       $repository = $this->getDoctrine()->getRepository('AppBundle:Gallery');
+       $galleries = $repository->findAll(); 
+    
+       //print_r($galleries);
+
+       return $this->render('show/galleries.html.twig', array(
+           'galleries' => $galleries,
+       ));
     }
 
 
+    
 }
