@@ -21,7 +21,7 @@
   </tr>
   <tr>
     <th>Obrazek</th>
-    <th> <img src="{{ asset('images/' ~ image.getFullSize) }}" width="80px"/> </th>
+    <th> <img src="{{ asset('images/' ~ image.getFullSize) | imagine_filter('my_thumb') }}"/> </th>
   </tr>
  
 </table>

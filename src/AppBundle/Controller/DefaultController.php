@@ -86,10 +86,9 @@ class DefaultController extends Controller
  
     }
 
-   /**
+    /**
      * @Route("/add/gallery")
      */
-
     public function addGallery(Request $request)
     {
      
@@ -103,9 +102,7 @@ class DefaultController extends Controller
    
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-        // $form->getData() holds the submitted values
-        // but, the original `$task` variable has also been updated
-        $task = $form->getData();
+        $gallery = $form->getData();
         
         $em = $this->getDoctrine()->getManager();
         $em->persist($gallery);
@@ -163,25 +160,31 @@ class DefaultController extends Controller
    
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-        // $form->getData() holds the submitted values
-        // but, the original `$task` variable has also been updated
+        
         $image = $form->getData();
-       
         $file = $image->getFullSize();
-
-        // Generate a unique name for the file before saving it
         $fileName = md5(uniqid()).'.'.$file->guessExtension();
 
-        // Move the file to the directory where brochures are stored
+        // Move the file to the directory where images are stored
         $file->move(
             $this->getParameter('images_directory'),
             $fileName
         );
-
-        // Update the 'brochure' property to store the PDF file name
-        // instead of its contents
         $image->setFullSize($fileName);        
-        $image->setSmallSize($fileName);        
+        $smallFileName = $fileName;
+
+        //$imageToProcess = '/images/'.$image->getFullSize(); //$this->getParameter('images_directory').'/'.$image->getFullSize(); 
+        //$processedImage = $this->container->get('liip_imagine.data.manager')->find('my_thumb', $imageToProcess );
+        //$filteredImage = $this->container->get('liip_imagine.filter.manager')->getFilterConfiguration($request, 'my_thumb', $processedImage, $imageToProcess)->getContent();
+
+        //$smallfileName = md5(uniqid()).'.'.$filteredImage_image->guessExtension();
+        //$filteredImage->move(
+        //    $this->getParameter('images_directory'),
+        //    $smallfileName
+        //);
+        
+        $image->setSmallSize($smallFileName);        
+        
         $image->setAuthor($this->container->get('security.token_storage')->getToken()->getUser());
 
         $em = $this->getDoctrine()->getManager();

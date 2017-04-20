@@ -5,7 +5,7 @@
   <tr>
     <th>
       {{ image.name }}</br>
-      <a href="/show/image/{{image.id}}"><img src="{{ asset('images/' ~ image.getFullSize) }}" width="80px"/></a>
+      <a href="/show/image/{{image.id}}"><img src="{{ asset('images/' ~ image.getFullSize) | imagine_filter('my_thumb') }}"/></a>
     </th>
   </tr>
 </table>
