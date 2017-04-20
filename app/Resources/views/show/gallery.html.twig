@@ -5,10 +5,12 @@
   <tr>
     <th>
       {{ image.name }}</br>
-      <img src="{{ asset('images/' ~ image.getFullSize) }}" width="80px"/>
+      <a href="/show/image/{{image.id}}"><img src="{{ asset('images/' ~ image.getFullSize) }}" width="80px"/></a>
     </th>
   </tr>
 </table>
 {% endfor %}
 
+
+<a href='/add/image'>Dodaj nowy obrazek </a></br>
 <a href='/show/galleries'>Powrót do listy galerii </a>

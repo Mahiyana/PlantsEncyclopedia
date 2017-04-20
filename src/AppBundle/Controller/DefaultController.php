@@ -190,13 +190,16 @@ class DefaultController extends Controller
         $em = $this->getDoctrine()->getManager();
         $em->persist($image);
         $em->flush();
+        $last_id = $image->getId();
 
-        $repository = $this->getDoctrine()->getRepository('AppBundle:Image');
-        $images = $repository->findAll(); 
+        return $this->redirect('/show/image/'. $last_id );
+        
+        //$repository = $this->getDoctrine()->getRepository('AppBundle:Image');
+        //$images = $repository->findAll(); 
 
-        return $this->render('show/images.html.twig', array(
-            'images' => $images,
-        ));
+        //return $this->render('show/images.html.twig', array(
+        //    'images' => $images,
+        //));
 
     }
 
@@ -248,5 +251,22 @@ class DefaultController extends Controller
        ));
  
     }
+
+    /**
+     * @Route("/show/image/{image_id}", requirements={"page": "\d+"})
+     */
+
+    public function showImage(Request $request)
+    {
+       $repository = $this->getDoctrine()->getRepository('AppBundle:Image');
+       $image_id = $request->attributes->get('image_id');
+       $image = $repository->findOneById($image_id);
+      
+       return $this->render('show/image.html.twig', array(
+           'image' => $image,
+       ));
+ 
+    }
+
 
 }
