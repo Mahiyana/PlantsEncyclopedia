@@ -111,12 +111,9 @@ class DefaultController extends Controller
         $em->persist($gallery);
         $em->flush();
 
-       $repository = $this->getDoctrine()->getRepository('AppBundle:Gallery');
-       $galleries = $repository->findAll(); 
+        $last_id = $gallery->getId();
 
-       return $this->render('show/galleries.html.twig', array(
-           'galleries' => $galleries,
-       ));
+        return $this->redirect('/show/gallery/'. $last_id );
 
     }
 
@@ -193,13 +190,6 @@ class DefaultController extends Controller
         $last_id = $image->getId();
 
         return $this->redirect('/show/image/'. $last_id );
-        
-        //$repository = $this->getDoctrine()->getRepository('AppBundle:Image');
-        //$images = $repository->findAll(); 
-
-        //return $this->render('show/images.html.twig', array(
-        //    'images' => $images,
-        //));
 
     }
 
