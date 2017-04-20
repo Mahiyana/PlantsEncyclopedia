@@ -1,0 +1,25 @@
+<h1>Obrazki</h1>
+<ul>
+
+{% for image in images %}
+<table>
+  <tr>
+    <th>Nazwa</th>
+    <th> {{ image.name }} </th>
+  </tr>
+  <tr>
+    <th>Opis</th>
+    <th> {{ image.description }} </th>
+  </tr>
+  <tr>
+    <th>Galeria</th>
+    <th> {{ image.gallery.name }} </th>
+  </tr>
+  <tr>
+    <th>Obrazek</th>
+    <th> <img src="{{ asset('images/' ~ image.getFullSize) }}" width="80px"/> </th>
+  </tr>
+
+</table>
+{% endfor %}
+</ul>

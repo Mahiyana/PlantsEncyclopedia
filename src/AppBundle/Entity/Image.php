@@ -46,17 +46,14 @@ class Image
    /**
     * @ORM\Column(type="string")
     *
-    * @Assert\NotBlank(message="Please, upload the product brochure as a PDF file.")
-    * @Assert\Image()
+    * @Assert\NotBlank(message="Please, upload the picture as a jpg file.")
+    * @Assert\File(mimeTypes={ "image/*" })
     */
    private $full_size; 
    
    /**
-     * @ORM\Column(type="string")
-     *
-     * @Assert\NotBlank(message="Please, upload the product brochure as a PDF file.")
-     * @Assert\Image()
-     */
+    * @ORM\Column(type="string")
+    */
    private $small_size; 
 
     /**

@@ -14,6 +14,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
 #use Symfony\Component\Security\Core\Role\Role;
 
@@ -136,5 +137,79 @@ class DefaultController extends Controller
     }
 
 
+    /**
+     * @Route("/add/image")
+     */
+
+    public function addImage(Request $request)
+    {
+       $repository = $this->getDoctrine()->getRepository('AppBundle:Gallery');
+       $galleries = $repository->findAll(); 
+
+       $image = new Image();
+       $form = $this->createFormBuilder($image)
+            ->add('name', TextType::class)
+            ->add('description', TextType::class)
+            ->add('gallery', EntityType::class, array(
+              'class' => 'AppBundle:Gallery',
+              'choice_label' => 'name',
+            ))
+            ->add('full_size', FileType::class)
+            ->add('save', SubmitType::class, array('label' => 'Dodaj obrazek'))
+            ->getForm();
+       
+   
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+        // $form->getData() holds the submitted values
+        // but, the original `$task` variable has also been updated
+        $image = $form->getData();
+       
+        $file = $image->getFullSize();
+
+        // Generate a unique name for the file before saving it
+        $fileName = md5(uniqid()).'.'.$file->guessExtension();
+
+        // Move the file to the directory where brochures are stored
+        $file->move(
+            $this->getParameter('images_directory'),
+            $fileName
+        );
+
+        // Update the 'brochure' property to store the PDF file name
+        // instead of its contents
+        $image->setFullSize($fileName);        
+        $image->setSmallSize($fileName);        
+        $image->setAuthor($this->get('security.context')->getToken()->getUser());       
+
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($image);
+        $em->flush();
+
+        //return $this->redirectToRoute('show/galleries');
+    }
+
+        return $this->render('add/image.html.twig', array(
+            'form' => $form->createView(),
+        ));
+
+    }
+
+    /**
+     * @Route("/show/images")
+     */
+
+    public function showImages()
+    {
+     
+       $repository = $this->getDoctrine()->getRepository('AppBundle:Image');
+       $images = $repository->findAll(); 
     
+       //print_r($galleries);
+
+       return $this->render('show/images.html.twig', array(
+           'images' => $images,
+       ));
+    }
+
 }
