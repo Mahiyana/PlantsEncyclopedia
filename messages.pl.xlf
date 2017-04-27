@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" datatype="plaintext" original="file.ext">
+        <body>
+            <trans-unit id="galleries">
+                <source>Galleries</source>
+                <target>Galerie</target>
+            </trans-unit>
+            <trans-unit id="add_gallery">
+                <source>Add new gallery</source>
+                <target>Dodaj nową galerię</target>
+            </trans-unit>
+            <trans-unit id="go_back_to_galleries">
+                <source>Go back to galleries list</source>
+                <target>Powrót do listy galerii</target>
+            </trans-unit>
+            <trans-unit id="add_image">
+                <source>Add new image</source>
+                <target>Dodaj nowy obrazek</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

@@ -260,6 +260,19 @@ class DefaultController extends Controller
        ));
  
     }
+  
+   /**
+    *
+    * @Route("/change_language", requirements={"id" = "\d+"}, name="change_language")
+    * @return RedirectResponse
+    *
+    */
+   public function changeLanguage(Request $request){
+      $locale = $request->getLocale();
+      print($locale);
+      $request->setLocale('pl');
+      print($locale);
 
-
+      return null;
+   }
 }

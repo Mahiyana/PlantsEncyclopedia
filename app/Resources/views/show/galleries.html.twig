@@ -1,4 +1,4 @@
-<h1>Galerie</h1>
+<h1>{% trans %}Galleries{% endtrans %}</h1>
 <ul>
 
 {% for gallery in galleries %}
@@ -25,4 +25,5 @@
 {% endfor %}
 </ul>
 
-<a href='/add/gallery'>Dodaj nową galerię</a>
+<a href='/add/gallery'>{% trans %}Add new gallery {% endtrans %}</a>
+<a href="{{ path('change_language') }}">Change language</a>
