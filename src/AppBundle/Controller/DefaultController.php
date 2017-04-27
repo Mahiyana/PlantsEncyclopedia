@@ -19,6 +19,8 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
+use Ivory\CKEditorBundle\Form\Type\CKEditorType;
+
 use Doctrine\Common\Collections\ArrayCollection;
 #use Symfony\Component\Security\Core\Role\Role;
 
@@ -340,7 +342,7 @@ class DefaultController extends Controller
        $article = new Article();
        $form = $this->createFormBuilder($article)
             ->add('title', TextType::class)
-            ->add('content', TextAreaType::class)
+            ->add('content', CKEditorType::class)
             ->add('category', EntityType::class, array(
               'class' => 'AppBundle:Category',
               'choice_label' => 'name',
@@ -402,7 +404,7 @@ class DefaultController extends Controller
        
        $form = $this->createFormBuilder($article)
             ->add('title', TextType::class)
-            ->add('content', TextAreaType::class)
+            ->add('content', CKEditorType::class)
             ->add('category', EntityType::class, array(
               'class' => 'AppBundle:Category',
               'choice_label' => 'name',
