@@ -47,13 +47,16 @@ class Image
     * @ORM\Column(type="string")
     *
     * @Assert\NotBlank(message="Please, upload the picture as a jpg file.")
-    * @Assert\File(mimeTypes={ "image/*" })
+    * @Assert\File(mimeTypes={ "image/jpg" })
     */
    private $full_size; 
    
    /**
-    * @ORM\Column(type="string")
-    */
+     * @ORM\Column(type="string")
+     *
+     * @Assert\NotBlank(message="Please, upload the picture as a jpg file.")
+     * @Assert\File(mimeTypes={ "image/jpg" })
+     */
    private $small_size; 
 
     /**
