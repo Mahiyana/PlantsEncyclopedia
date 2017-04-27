@@ -1,0 +1,11 @@
+<h1>Kategorie</h1>
+<ul>
+
+<ul>
+{% for category in categories %}
+  <li> <a href = '/show/category/{{category.ID}}'>{{ category.name }} </a>
+{% endfor %}
+</ul>
+
+<a href='/add/category'>Dodaj nową kategorię</a>
+<a href='/add/article'>Dodaj nowy artykuł</a></br>

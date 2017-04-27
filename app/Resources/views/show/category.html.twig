@@ -1,0 +1,11 @@
+<h1>{{ category.name }}</h1>
+
+<ul>
+{% for article in category.articles %}
+  <li><a href='/show/article/{{article.id}}'>{{ article.title }} </a></li>    
+</table>
+{% endfor %}
+</ul>
+
+<a href='/add/article'>Dodaj nowy artykuł</a></br>
+<a href='/show/categories'>Powrót do listy kategorii </a>
