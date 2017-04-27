@@ -387,5 +387,48 @@ class DefaultController extends Controller
  
     }
 
+    /**
+     * @Route("/edit/article/{article_id}", requirements={"page": "\d+"})
+     */
+
+    public function editArticle(Request $request)
+    {
+       $repository = $this->getDoctrine()->getRepository('AppBundle:Category');
+       $categories = $repository->findAll(); 
+
+       $repository = $this->getDoctrine()->getRepository('AppBundle:Article');
+       $article_id = $request->attributes->get('article_id');
+       $article = $repository->findOneById($article_id);
+       
+       $form = $this->createFormBuilder($article)
+            ->add('title', TextType::class)
+            ->add('content', TextAreaType::class)
+            ->add('category', EntityType::class, array(
+              'class' => 'AppBundle:Category',
+              'choice_label' => 'name',
+            ))
+            ->add('save', SubmitType::class, array('label' => 'Zapisz'))
+            ->getForm();
+
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+        
+        $article = $form->getData();
+
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($article);
+        $em->flush();
+        $last_id = $article->getId();
+
+        return $this->redirect('/show/article/'. $last_id );
+
+    }
+
+        return $this->render('edit/article.html.twig', array(
+            'form' => $form->createView(),
+        ));
+
+    }
+
 
 }
