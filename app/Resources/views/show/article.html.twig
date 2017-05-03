@@ -1,3 +1,6 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
 <h1>{{ article.title  }} </h1>
 {{ article.content | raw}}
 
@@ -6,3 +9,4 @@
 <a href="/edit/article/{{ article.id }}">Edytuj </a>
 <br/>
 <a href="/show/category/{{ article.category.id }}">Powrót do kategori </a>
+{% endblock %}

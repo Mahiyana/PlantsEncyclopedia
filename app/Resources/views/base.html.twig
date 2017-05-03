@@ -2,12 +2,42 @@
 <html>
     <head>
         <meta charset="UTF-8" />
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
-        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+        <title>{% block title %}Encyklopedia Roślin{% endblock %}</title>
     </head>
     <body>
-        {% block body %}{% endblock %}
-        {% block javascripts %}{% endblock %}
+        <div id='menu'>
+        {% block sidebar %}
+          <nav>
+            <ul>
+              <li><a href='/show/galleries'>Galeria</a></li>
+              <li><a href='/show/categories'>Artykuły</a></li>
+              <li><a href='/show/callendar'>Kalendarium</a></li>
+              <li><a href='/show/users'>Użytkownicy</a></li>
+              {% if userID is defined %}
+                <li><a href='/show/user/{{userID}}'>Moje Konto</a></li>
+              {% endif %}
+            </ul>
+          </nav>
+        {% endblock %}
+        </div>
+        
+        <div id ='change_language'>
+        {% block change_language %}
+        {% if locale is defined %}
+          {% if locale == 'en' %}
+              <a href = '/change_language/pl'>Change language to polish</a>
+          {% else %}
+              <a href = '/change_language/en'>Zmień język na angielski</a>
+          {% endif %}
+        {% else %}
+          <p>Nie wykryto locali</p>
+        {% endif %}  
+        {% endblock %}
+        </div>
+
+        <div id="content">
+            {% block body %}Tu będzie content{% endblock %}
+        </div>
+
     </body>
 </html>

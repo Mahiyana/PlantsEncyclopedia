@@ -1,3 +1,6 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
 <h1>Galerie</h1>
 <ul>
 
@@ -25,9 +28,5 @@
 {% endfor %}
 </ul>
 
-{% if locale == 'en' %}
-    <a href = '/change_language/pl'>Change language to polish</a>
-{% else %}
-    <a href = '/change_language/en'>Zmień język na angielski</a>
-{% endif %}
 <a href='/add/gallery'>{% trans %}Dodaj nową galerię{% endtrans %}</a>
+{% endblock %}

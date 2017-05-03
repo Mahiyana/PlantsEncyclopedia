@@ -1,3 +1,6 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
 <h1>{{ image.name  }} </h1>
 <h3>{{ image.description }}</h3>
 
@@ -5,3 +8,4 @@
 <p>Autor: <a href="/show/user/{{ image.author.id  }}">{{ image.author.username }}</a>
 <br/>
 <a href="/show/gallery/{{ image.gallery.id }}">Powrót do galerii </a>
+{% endblock %}

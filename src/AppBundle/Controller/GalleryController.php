@@ -66,9 +66,7 @@ class GalleryController extends Controller
 
     public function showGalleries(Request $request)
     {
-        $locale = $request->getLocale();
-        print($locale);
-   
+       $locale = $request->getLocale();
        $repository = $this->getDoctrine()->getRepository('AppBundle:Gallery');
        $galleries = $repository->findAll(); 
 

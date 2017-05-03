@@ -1,3 +1,6 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
 <h1>{{ category.name }}</h1>
 
 <ul>
@@ -9,3 +12,4 @@
 
 <a href='/add/article'>Dodaj nowy artykuł</a></br>
 <a href='/show/categories'>Powrót do listy kategorii </a>
+{% endblock %}
