@@ -23,15 +23,11 @@
         
         <div id ='change_language'>
         {% block change_language %}
-        {% if locale is defined %}
-          {% if locale == 'en' %}
+          {% if app.request.getLocale() == 'en' %}
               <a href = '/change_language/pl'>Change language to polish</a>
           {% else %}
               <a href = '/change_language/en'>Zmień język na angielski</a>
           {% endif %}
-        {% else %}
-          <p>Nie wykryto locali</p>
-        {% endif %}  
         {% endblock %}
         </div>
 
