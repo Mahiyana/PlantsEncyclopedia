@@ -129,9 +129,11 @@ class DefaultController extends Controller
      * @Route("/show/galleries")
      */
 
-    public function showGalleries()
+    public function showGalleries(Request $request)
     {
-     
+        $locale = $request->getLocale();
+        print($locale);
+   
        $repository = $this->getDoctrine()->getRepository('AppBundle:Gallery');
        $galleries = $repository->findAll(); 
 
@@ -432,5 +434,11 @@ class DefaultController extends Controller
 
     }
 
+   /**
+    * @Route("/change_language/{_locale}", requirements={"_locale" = "pl|en"})
+    */
+    public function changeLanguage(Request $request){ 
+        return $this->redirect($request->headers->get('referer','/'));
+    }
 
 }
