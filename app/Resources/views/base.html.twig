@@ -3,21 +3,69 @@
     <head>
         <meta charset="UTF-8" />
         <title>{% block title %}Encyklopedia Roślin{% endblock %}</title>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     </head>
     <body>
+
+<nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Encyklopedia Słodyczy</a>
+        </div>
+        {% if not app.user %}
+        <div id="navbar" class="navbar-collapse collapse">
+          <form class="navbar-form navbar-right" action="\login_check" method="post">
+              <div class="form-group">
+                 <input type="text" id="username" name="_username" placeholder="Login" class="form-control" >/>
+              </div>
+              <div class="form-group">
+                 <input type="password" id="password" name="_password" placeholder="{% trans %}Hasło{% endtrans %}" class="form-control" />
+              </div>
+              <input type="hidden" name="_csrf_token" value="{{ fos_csrf_provider.refreshToken('authenticate') }}" />
+              <button type="submit" class="btn btn-default">{% trans %}Zaloguj{% endtrans %}</button>
+          </form>
+          {% else %}
+            <form class="navbar-form navbar-right" action="\logout" method="post">
+              <button type="submit" class="btn btn-default">{% trans %}Wyloguj{% endtrans %}</button>
+            </form>
+          {% endif %}
+        </div><!--/.navbar-collapse -->
+      </div>
+    </nav>
+
+   <div class="jumbotron">
+      <div class="container">
+      </div>
+    </div>
+
+    {% block body2 %} 
+    <div class ="container">
         <div id='menu'>
         {% block sidebar %}
-          <nav>
-            <ul>
-              <li><a href='/show/galleries'>{% trans %}Galeria{% endtrans %}</a></li>
-              <li><a href='/show/categories'>{% trans %}Artykuły{% endtrans %}</a></li>
-              <li><a href='/show/callendar'>{% trans %}Kalendarium{% endtrans %}</a></li>
-              <li><a href='/show/users'>{% trans %}Użytkownicy{% endtrans %}</a></li>
+          <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar">
+            <div class="list-group">
+              <a href='/show/galleries' class="list-group-item">{% trans %}Galeria{% endtrans %}</a>
+              <a href='/show/categories' class="list-group-item">{% trans %}Artykuły{% endtrans %}</a>
+              <a href='/show/callendar' class="list-group-item">{% trans %}Kalendarium{% endtrans %}</a>
+              <a href='/show/users' class="list-group-item">{% trans %}Użytkownicy{% endtrans %}</a>
               {% if userID is defined %}
-                <li><a href='/show/user/{{userID}}'>{% trans %}Moje Konto{% endtrans %}</a></li>
+                <a href='/show/user/{{userID}}' class="list-group-item">{% trans %}Moje Konto{% endtrans %}</a>
               {% endif %}
-            </ul>
-          </nav>
+           </div>
+         </div>
         {% endblock %}
         </div>
         
@@ -30,10 +78,11 @@
           {% endif %}
         {% endblock %}
         </div>
-
-        <div id="content">
+        
+        <div id="content" class="col-xs-12 col-sm-9">
             {% block body %}Tu będzie content{% endblock %}
         </div>
-
+    </div>
+    {% endblock %}
     </body>
 </html>

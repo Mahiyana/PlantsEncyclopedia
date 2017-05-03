@@ -138,6 +138,26 @@
                 <source>Dodaj obrazek</source>
                 <target>Add image</target>
             </trans-unit>
+            <trans-unit id="36">
+                <source>Hasło</source>
+                <target>Password</target>
+            </trans-unit>
+            <trans-unit id="37">
+                <source>Zaloguj</source>
+                <target>Sign in</target>
+            </trans-unit>
+            <trans-unit id="38">
+                <source>Wyloguj</source>
+                <target>Sign out</target>
+            </trans-unit>
+            <trans-unit id="39">
+                <source>Galeria</source>
+                <target>Gallery</target>
+            </trans-unit>
+            <trans-unit id="40">
+                <source>Artykuły</source>
+                <target>Articles</target>
+            </trans-unit>
         
         </body>
     </file>

@@ -4,7 +4,8 @@
 <h1>{{ gallery.name }}</h1>
 <h3>{{ gallery.description }}</h3>
 {% for image in gallery.images %}
-<table>
+<div class="col-lg-4">
+<table class="table">
   <tr>
     <th>
       {{ image.name }}</br>
@@ -12,9 +13,11 @@
     </th>
   </tr>
 </table>
+</div>
 {% endfor %}
 
-
-<a href='/add/image'>{% trans %}Dodaj nowy obrazek{% endtrans %}</a></br>
-<a href='/show/galleries'>{% trans %}Powrót do listy galerii{% endtrans %}</a>
+<div style="clear:both">
+  <a href='/add/image'>{% trans %}Dodaj nowy obrazek{% endtrans %}</a></br>
+  <a href='/show/galleries'>{% trans %}Powrót do listy galerii{% endtrans %}</a>
+</div>
 {% endblock %}

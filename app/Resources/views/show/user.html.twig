@@ -2,9 +2,9 @@
 
 {% block body %}
 <h1>{% trans %}Użytkownik{% endtrans %}</h1>
-<table>
+<table class="table">
   <tr>
-    <th>{% trans %}Login{% endtrans %}</th>
+    <th>{% trans %}Login{% endtrans %} </th>
     <th> {{ user.username }} </th>
   </tr>
   <tr>
@@ -12,7 +12,7 @@
     <th> {{ user.email }} </th>
   </tr>
   <tr>
-    <th>{% trans %}Role{% trans %}</th>
+    <th>{% trans %}Role{% endtrans %} </th>
     <th> 
       <ul>
          {% for role in user.roles %}

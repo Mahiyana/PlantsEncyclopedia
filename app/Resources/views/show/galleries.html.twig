@@ -2,10 +2,9 @@
 
 {% block body %}
 <h1>{% trans %}Galerie{% endtrans %}</h1>
-<ul>
 
+<table class="table">
 {% for gallery in galleries %}
-<table>
   <tr>
     <th>{% trans %}Nazwa{% endtrans %}</th>
     <th> <a href = '/show/gallery/{{ gallery.ID}}'>{{ gallery.name }} </a>
@@ -14,9 +13,8 @@
     <th>{% trans %}Opis{% endtrans %}</th>
     <th> {{ gallery.getDescription2 }} </th>
   </tr>
-</table>
 {% endfor %}
-</ul>
+</table>
 
 <a href='/add/gallery'>{% trans %}Dodaj nową galerię{% endtrans %}</a>
 {% endblock %}
