@@ -74,6 +74,7 @@ class GalleryController extends Controller
 
        return $this->render('show/galleries.html.twig', array(
            'galleries' => $galleries,
+           'locale' => $locale,
        ));
     }
 
