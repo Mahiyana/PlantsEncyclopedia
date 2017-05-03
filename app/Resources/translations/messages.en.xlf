@@ -2,10 +2,143 @@
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
     <file source-language="en" datatype="plaintext" original="file.ext">
         <body>
-            <trans-unit id="symfony_is_great">
+            <trans-unit id="1">
                 <source>Dodaj nową galerię</source>
                 <target>Add new gallery</target>
             </trans-unit>
+            <trans-unit id="2">
+                <source>Nowy artykuł</source>
+                <target>New article</target>
+            </trans-unit>
+            <trans-unit id="3">
+                <source>Nowa kategoria artykułów</source>
+                <target>New articles' category</target>
+            </trans-unit>
+            <trans-unit id="4">
+                <source>Nowa galeria</source>
+                <target>New gallery</target>
+            </trans-unit>
+            <trans-unit id="5">
+                <source>Nowy obrazek</source>
+                <target>New image</target>
+            </trans-unit>
+            <trans-unit id="6">
+                <source>Edycja artykułu</source>
+                <target>Edit article</target>
+            </trans-unit>
+             <trans-unit id="7">
+                <source>Autor</source>
+                <target>Author</target>
+            </trans-unit>
+            <trans-unit id="8">
+                <source>Edytuj</source>
+                <target>Edit</target>
+            </trans-unit>
+            <trans-unit id="9">
+                <source>Powrót do kategori</source>
+                <target>Go back to category</target>
+            </trans-unit>
+            <trans-unit id="10">
+                <source>Kategorie artykułów</source>
+                <target>Articles' categories</target>
+            </trans-unit>
+            <trans-unit id="11">
+                <source>Dodaj nową kategorię</source>
+                <target>Add new category</target>
+            </trans-unit>
+            <trans-unit id="12">
+                <source>Dodaj nowy artykuł</source>
+                <target>Add new article</target>
+            </trans-unit>
+            <trans-unit id="13">
+                <source>Powrót do listy kategorii</source>
+                <target>Go back to categories list</target>
+            </trans-unit>
+            <trans-unit id="14">
+                <source>Galerie</source>
+                <target>Galleries</target>
+            </trans-unit>
+            <trans-unit id="15">
+                <source>Nazwa</source>
+                <target>Name</target>
+            </trans-unit>
+            <trans-unit id="16">
+                <source>Opis</source>
+                <target>Description</target>
+            </trans-unit>
+            <trans-unit id="18">
+                <source>Dodaj nowy obrazek</source>
+                <target>Add new image</target>
+            </trans-unit>
+            <trans-unit id="19">
+                <source>Powrót do listy galerii</source>
+                <target>Go back to galleries' list</target>
+            </trans-unit>
+            <trans-unit id="20">
+                <source>Powrót do galerii</source>
+                <target>Go back to gallery</target>
+            </trans-unit>
+            <trans-unit id="21">
+                <source>Użytkownik</source>
+                <target>User</target>
+            </trans-unit>
+            <trans-unit id="22">
+                <source>Roles</source>
+                <target>Role</target>
+            </trans-unit>
+            <trans-unit id="23">
+                <source>Powrót do listy użytkowników</source>
+                <target>Go back to users' list</target>
+            </trans-unit>
+            <trans-unit id="24">
+                <source>Użytkownicy</source>
+                <target>Users</target>
+            </trans-unit>
+            <trans-unit id="25">
+                <source>Kalendarium</source>
+                <target>Callendar</target>
+            </trans-unit>
+            <trans-unit id="26">
+                <source>Moje konto</source>
+                <target>My profile</target>
+            </trans-unit>
+            <trans-unit id="27">
+                <source>Dodaj kategorię</source>
+                <target>Add category</target>
+            </trans-unit>
+            <trans-unit id="28">
+                <source>Tytuł</source>
+                <target>Title</target>
+            </trans-unit>
+            <trans-unit id="29">
+                <source>Treść</source>
+                <target>Content</target>
+            </trans-unit>
+            <trans-unit id="30">
+                <source>Kategoria</source>
+                <target>Category</target>
+            </trans-unit>
+            <trans-unit id="31">
+                <source>Dodaj artykuł</source>
+                <target>Add article</target>
+            </trans-unit>
+            <trans-unit id="32">
+                <source>Zapisz</source>
+                <target>Save</target>
+            </trans-unit>
+            <trans-unit id="33">
+                <source>Dodaj galerię</source>
+                <target>Add gallery</target>
+            </trans-unit>
+            <trans-unit id="34">
+                <source>Wgraj plik</source>
+                <target>Upload file</target>
+            </trans-unit>
+            <trans-unit id="35">
+                <source>Dodaj obrazek</source>
+                <target>Add image</target>
+            </trans-unit>
+        
         </body>
     </file>
 </xliff>

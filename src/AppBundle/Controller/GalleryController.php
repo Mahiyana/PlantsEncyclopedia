@@ -34,9 +34,9 @@ class GalleryController extends Controller
      
        $gallery = new Gallery();
        $form = $this->createFormBuilder($gallery)
-            ->add('name', TextType::class)
-            ->add('description', TextType::class)
-            ->add('save', SubmitType::class, array('label' => 'Dodaj galerię'))
+            ->add('name', TextType::class, array('label' => $this->get('translator')->trans('Tytuł')))
+            ->add('description', TextType::class, array('label' => $this->get('translator')->trans('Opis') ))
+            ->add('save', SubmitType::class, array('label' => $this->get('translator')->trans('Dodaj galerię')))
             ->getForm();
        
    
@@ -86,14 +86,15 @@ class GalleryController extends Controller
 
        $image = new Image();
        $form = $this->createFormBuilder($image)
-            ->add('name', TextType::class)
-            ->add('description', TextType::class)
+            ->add('name', TextType::class, array('label' => $this->get('translator')->trans('Tytuł')))
+            ->add('description', TextType::class, array('label' => $this->get('translator')->trans('Opis')))
             ->add('gallery', EntityType::class, array(
               'class' => 'AppBundle:Gallery',
               'choice_label' => 'name',
+              'label' => $this->get('translator')->trans('Galeria')
             ))
-            ->add('full_size', FileType::class)
-            ->add('save', SubmitType::class, array('label' => 'Dodaj obrazek'))
+            ->add('full_size', FileType::class, array('label' => $this->get('translator')->trans('Wgraj plik')))
+            ->add('save', SubmitType::class, array('label' => $this->get('translator')->trans('Dodaj obrazek')))
             ->getForm();
        
    

@@ -9,12 +9,12 @@
         {% block sidebar %}
           <nav>
             <ul>
-              <li><a href='/show/galleries'>Galeria</a></li>
-              <li><a href='/show/categories'>Artykuły</a></li>
-              <li><a href='/show/callendar'>Kalendarium</a></li>
-              <li><a href='/show/users'>Użytkownicy</a></li>
+              <li><a href='/show/galleries'>{% trans %}Galeria{% endtrans %}</a></li>
+              <li><a href='/show/categories'>{% trans %}Artykuły{% endtrans %}</a></li>
+              <li><a href='/show/callendar'>{% trans %}Kalendarium{% endtrans %}</a></li>
+              <li><a href='/show/users'>{% trans %}Użytkownicy{% endtrans %}</a></li>
               {% if userID is defined %}
-                <li><a href='/show/user/{{userID}}'>Moje Konto</a></li>
+                <li><a href='/show/user/{{userID}}'>{% trans %}Moje Konto{% endtrans %}</a></li>
               {% endif %}
             </ul>
           </nav>
@@ -24,9 +24,9 @@
         <div id ='change_language'>
         {% block change_language %}
           {% if app.request.getLocale() == 'en' %}
-              <a href = '/change_language/pl'>Change language to polish</a>
+              <a href = '/change_language/pl'>Zmień język na polski</a>
           {% else %}
-              <a href = '/change_language/en'>Zmień język na angielski</a>
+              <a href = '/change_language/en'>Change language to English</a>
           {% endif %}
         {% endblock %}
         </div>

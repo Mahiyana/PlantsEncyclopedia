@@ -35,8 +35,8 @@ class ArticlesController extends Controller
      
        $category = new Category();
        $form = $this->createFormBuilder($category)
-            ->add('name', TextType::class)
-            ->add('save', SubmitType::class, array('label' => 'Dodaj kategorię'))
+            ->add('name', TextType::class, array('label' => $this->get('translator')->trans('Nazwa')))
+            ->add('save', SubmitType::class, array('label' => $this->get('translator')->trans('Dodaj kategorię')))
             ->getForm();
        
    
@@ -102,13 +102,14 @@ class ArticlesController extends Controller
 
        $article = new Article();
        $form = $this->createFormBuilder($article)
-            ->add('title', TextType::class)
-            ->add('content', CKEditorType::class)
+            ->add('title', TextType::class, array('label' => $this->get('translator')->trans('Tytuł')))
+            ->add('content', CKEditorType::class, array('label' => $this->get('translator')->trans('Treść')))
             ->add('category', EntityType::class, array(
               'class' => 'AppBundle:Category',
               'choice_label' => 'name',
+              'label' => $this->get('translator')->trans('Kategoria')
             ))
-            ->add('save', SubmitType::class, array('label' => 'Dodaj artykuł'))
+            ->add('save', SubmitType::class, array('label' => $this->get('translator')->trans('Dodaj artykuł')))
             ->getForm();
        
    
@@ -164,14 +165,16 @@ class ArticlesController extends Controller
        $article = $repository->findOneById($article_id);
        
        $form = $this->createFormBuilder($article)
-            ->add('title', TextType::class)
-            ->add('content', CKEditorType::class)
+            ->add('title', TextType::class, array('label' => $this->get('translator')->trans('Tytuł')))
+            ->add('content', CKEditorType::class, array('label' => $this->get('translator')->trans('Treść')))
             ->add('category', EntityType::class, array(
               'class' => 'AppBundle:Category',
               'choice_label' => 'name',
+              'label' => $this->get('translator')->trans('Kategoria')
             ))
-            ->add('save', SubmitType::class, array('label' => 'Zapisz'))
+            ->add('save', SubmitType::class, array('label' => $this->get('translator')->trans('Zapisz')))
             ->getForm();
+
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {

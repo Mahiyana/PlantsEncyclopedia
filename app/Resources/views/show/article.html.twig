@@ -4,9 +4,9 @@
 <h1>{{ article.title  }} </h1>
 {{ article.content | raw}}
 
-<p>Autor: <a href="/show/user/{{ article.author.id  }}">{{ article.author.username }}</a>
+<p>{% trans %}Autor{% endtrans %}: <a href="/show/user/{{ article.author.id  }}">{{ article.author.username }}</a>
 <br/>
-<a href="/edit/article/{{ article.id }}">Edytuj </a>
+<a href="/edit/article/{{ article.id }}">{% trans %}Edytuj{% endtrans %} </a>
 <br/>
-<a href="/show/category/{{ article.category.id }}">Powrót do kategori </a>
+<a href="/show/category/{{ article.category.id }}">{% trans %}Powrót do kategori{% endtrans %} </a>
 {% endblock %}

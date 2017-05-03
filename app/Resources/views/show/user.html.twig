@@ -1,22 +1,18 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-<h1>Użytkownik</h1>
+<h1>{% trans %}Użytkownik{% endtrans %}</h1>
 <table>
   <tr>
-    <th>Username</th>
+    <th>{% trans %}Login{% endtrans %}</th>
     <th> {{ user.username }} </th>
-  </tr>
-  <tr>
-    <th>Haslo</th>
-    <th> {{ user.password }} </th>
   </tr>
   <tr>
     <th>Email</th>
     <th> {{ user.email }} </th>
   </tr>
   <tr>
-    <th>Roles</th>
+    <th>{% trans %}Role{% trans %}</th>
     <th> 
       <ul>
          {% for role in user.roles %}
@@ -28,5 +24,5 @@
 
 </table>
 
-<a href='/show/users'>Powrót do listy użytkowników </a>
+<a href='/show/users'>{% trans %}Powrót do listy użytkowników{% endtrans %}</a>
 {% endblock %}

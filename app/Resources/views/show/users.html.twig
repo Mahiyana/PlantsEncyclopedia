@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-<h1>Użytkownicy</h1>
+<h1>{% trans %}Użytkownicy{% endtrans %}</h1>
 <ul>
 {% for user in users %}
   <li><a href = '/show/user/{{ user.ID}}'>{{ user.username }} </a></li>
