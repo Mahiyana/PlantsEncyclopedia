@@ -2,7 +2,7 @@
 
 {% block body %}
 <h1>{{ article.title  }} </h1>
-{{ article.content | raw}}
+<div><p>{{ content | raw}}</p></div>
 
 <p>{% trans %}Autor{% endtrans %}: <a href="/show/user/{{ article.author.id  }}">{{ article.author.username }}</a>
 <br/>

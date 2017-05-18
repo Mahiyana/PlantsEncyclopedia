@@ -158,6 +158,10 @@
                 <source>Artykuły</source>
                 <target>Articles</target>
             </trans-unit>
+             <trans-unit id="41">
+                <source>Kod do wklejania do tekstu</source>
+                <target>Code for adding it to texts</target>
+            </trans-unit>
         
         </body>
     </file>

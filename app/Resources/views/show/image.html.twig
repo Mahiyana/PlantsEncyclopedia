@@ -5,7 +5,8 @@
 <h3>{{ image.description }}</h3>
 
 <img src="{{ asset('images/' ~ image.getFullSize) }}" width="300px"/>
-<p>{% trans %}Autor{% endtrans %}: <a href="/show/user/{{ image.author.id  }}">{{ image.author.username }}</a>
+<p>{% trans %}Autor{% endtrans %}: <a href="/show/user/{{ image.author.id  }}">{{ image.author.username }}</a></p>
+<p>{% trans %}Kod do wklejania do tekstu{% endtrans %}: #{{ image.id  }}#</p>
 <br/>
 <a href="/show/gallery/{{ image.gallery.id }}">{% trans %}Powrót do galerii{% endtrans %}</a>
 {% endblock %}

@@ -144,9 +144,40 @@ class ArticlesController extends Controller
        $repository = $this->getDoctrine()->getRepository('AppBundle:Article');
        $article_id = $request->attributes->get('article_id');
        $article = $repository->findOneById($article_id);
-      
+    
+       $article_content = $article->getContent();
+       $article_content_to_show = "";
+       $hashes_positions = [];
+       
+       $repository2 = $this->getDoctrine()->getRepository('AppBundle:Image');
+       $i = 0;
+       while($i < strlen($article_content)-1){
+         if($article_content[$i] == "#"){
+           $i++;
+           $id = '';
+           while($article_content[$i] != "#"){
+           //  echo ($article_content[$i] != "#");
+             $id = $id.$article_content[$i];
+             $i++;
+           }
+           $i++;
+
+           $image = $repository2->findOneById((int)$id); 
+           $img_str = '<img src="/images/' . (string) $image->getFullSize() . '" width="300px"/>';
+           $article_content_to_show = $article_content_to_show. $img_str;
+         }else{
+           $article_content_to_show = $article_content_to_show.$article_content[$i];
+           $i++;
+         }
+       }
+
+       
+       //$image_id = $request->attributes->get('image_id');
+       //$image = $repository->findOneById($image_id);       
+
        return $this->render('show/article.html.twig', array(
            'article' => $article,
+           'content' => $article_content_to_show,
        ));
  
     }
