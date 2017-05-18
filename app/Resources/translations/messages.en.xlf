@@ -162,7 +162,26 @@
                 <source>Kod do wklejania do tekstu</source>
                 <target>Code for adding it to texts</target>
             </trans-unit>
-        
+            <trans-unit id="42">
+                <source>jest dziś</source>
+                <target>is tommorow</target>
+            </trans-unit>
+           <trans-unit id="43">
+                <source>już było</source>
+                <target>already happened</target>
+            </trans-unit>
+            <trans-unit id="44">
+                <source>będzie za</source>
+                <target>will be in</target>
+            </trans-unit>
+            <trans-unit id="45">
+                <source>dni</source>
+                <target>days</target>
+            </trans-unit>
+            <trans-unit id="46">
+                <source>Dodaj nowe wydarzenie</source>
+                <target>Add new event</target>
+           </trans-unit>
         </body>
     </file>
 </xliff>

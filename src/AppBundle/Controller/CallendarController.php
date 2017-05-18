@@ -45,7 +45,6 @@ class CallendarController extends Controller
        if($event->getAnniversary()){
          $year = (int) $event->getDate()->format('Y');
          $yearDiff = 2017 - $year;
-         echo $yearDiff;
          $event->setDate($event->getDate()->modify('+'. $yearDiff .' years'));
        }
          $diff = ltrim($now->diff($event->getDate())->format('%R%a'),"+");
