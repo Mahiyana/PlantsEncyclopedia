@@ -1,5 +1,20 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-<h2>COMMING SOON!</h2>
+<h1>{% trans %}Kalendarz{% endtrans %}</h1>
+
+<table class="table">
+{% for event in events %}
+  <tr>
+    <th>{% trans %}Nazwa{% endtrans %}</th>
+    <th>{{ event.name }} </a>
+  </tr>
+  <tr>
+    <th>{% trans %}Data{% endtrans %}</th>
+    <th> {{ event.date.format('Y-m-d H:i:s') }} </th>
+  </tr>
+{% endfor %}
+</table>
+
+<a href='/add/event'>{% trans %}Dodaj nowe wydarzenie{% endtrans %}</a>
 {% endblock %}
