@@ -8,10 +8,8 @@
   <tr>
     <th>{% trans %}Nazwa{% endtrans %}</th>
     <th>{{ event.name }} </a>
-  </tr>
-  <tr>
     <th>{% trans %}Data{% endtrans %}</th>
-    <th> {{ event.date.format('Y-m-d H:i:s') }} </th>
+    <th>{{ diffs[loop.index - 1] }} </th>
   </tr>
 {% endfor %}
 </table>

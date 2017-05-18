@@ -23,9 +23,9 @@ use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 
 use Ivory\CKEditorBundle\Form\Type\CKEditorType;
-
 use Doctrine\Common\Collections\ArrayCollection;
-#use Symfony\Component\Security\Core\Role\Role;
+
+use \Datetime;
 
 class CallendarController extends Controller
 {
@@ -36,9 +36,39 @@ class CallendarController extends Controller
     {
        $repository = $this->getDoctrine()->getRepository('AppBundle:Event');
        $events = $repository->findAll(); 
+       
+       $now = new DateTime('now');
+       $now2 = new DateTime('now');
+       $tommorow = $now2->modify('+1 day');
+       $diffs = [];
+       foreach($events as $event){
+       if($event->getAnniversary()){
+         $year = (int) $event->getDate()->format('Y');
+         $yearDiff = 2017 - $year;
+         echo $yearDiff;
+         $event->setDate($event->getDate()->modify('+'. $yearDiff .' years'));
+       }
+         $diff = ltrim($now->diff($event->getDate())->format('%R%a'),"+");
+         if($diff == "0"){
+           array_push($diffs, $this->get('translator')->trans('jest dziś'));
+         }
+         else if($diff == "1"){
+            $msg = $this->get('translator')->trans('będzie jutro');
+            array_push($diffs,$msg);
+         }
+         else if($now<$event->getDate()){
+           $msg = $this->get('translator')->trans('będzie za') . " " . $diff . " " . $this->get('translator')->trans('dni');
+           array_push($diffs,$msg);
+         }else{
+           array_push($diffs, $this->get('translator')->trans('już było'));
+         }
+       }
+       
+       #print_r($diffs);
 
        return $this->render('show/callendar.html.twig', array(
            'events' => $events,
+           'diffs' => $diffs,
        ));
 
         
