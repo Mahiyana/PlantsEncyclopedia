@@ -34,8 +34,19 @@ class CallendarController extends Controller
      */
     public function showCallendar(Request $request)
     {
-       $repository = $this->getDoctrine()->getRepository('AppBundle:Event');
-       $events = $repository->findAll(); 
+       $repository = $this->getDoctrine()->getManager()->getRepository('AppBundle:Event');
+       $events = $repository->findAll(array(), array('date.getTimestamp()' => 'DSC')); 
+     
+       print_r(count($events));
+       uasort($events, function($a, $b){
+         if ($a->getTimestamp() == $b->getTimestamp()) {
+           return 0;
+         }
+         return ($a->getTimestamp()< $b->getTimestamp()) ? -1 : 1;
+       }); 
+       //$events = usort($events, 'self::cmp');
+
+       print_r(count($events));
        
        $now = new DateTime('now');
        $now2 = new DateTime('now');
@@ -112,5 +123,12 @@ class CallendarController extends Controller
 
    }
 
+   function cmp($a, $b) {
+     if ($a.getTimestamp() == $b.getTimestamp()) {
+       return 0;
+     }
+   
+     return ($a.getTimestamp() < $b.getTimestamp()) ? -1 : 1;
+}
 
 }

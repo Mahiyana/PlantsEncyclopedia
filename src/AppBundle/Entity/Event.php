@@ -3,10 +3,11 @@ namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use AppBundle\Repository\CalendarRepository;
 
 /**
- * @ORM\Entity
  * @ORM\Table(name="`event`")
+ * @ORM\Entity
 */
 
 class Event
@@ -76,6 +77,16 @@ class Event
     public function getName()
     {
         return $this->name;
+    }
+
+    /**
+     * Get Timestamp
+     *
+     * @return int
+     */
+    public function getTimestamp()
+    {
+        return $this->date->getTimestamp();
     }
 
     /**
