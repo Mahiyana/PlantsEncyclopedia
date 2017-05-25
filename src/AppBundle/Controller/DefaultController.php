@@ -23,6 +23,7 @@ use Ivory\CKEditorBundle\Form\Type\CKEditorType;
 
 use Doctrine\Common\Collections\ArrayCollection;
 #use Symfony\Component\Security\Core\Role\Role;
+use DateTime;
 
 class DefaultController extends Controller
 {
@@ -31,10 +32,64 @@ class DefaultController extends Controller
      */
     public function indexAction(Request $request)
     {
-        // replace this example code with whatever you need
-        return $this->render('default/index.html.twig', [
-            'base_dir' => realpath($this->getParameter('kernel.root_dir').'/..').DIRECTORY_SEPARATOR,
-        ]);
+       $repository = $this->getDoctrine()->getManager()->getRepository('AppBundle:Event');
+       $events = $repository->findAll(); 
+     
+       uasort($events, function($a, $b){
+         if ($a->getTimestamp() == $b->getTimestamp()) {
+           return 0;
+         }
+         return ($a->getTimestamp()< $b->getTimestamp()) ? -1 : 1;
+       }); 
+       
+       $now = new DateTime('now');
+       $now_timestamp = $now->getTimestamp();
+       $closest_events = [];
+       $i = 0;
+       foreach($events as $event){
+         if($event->getTimestamp() > $now_timestamp and $i < 4){
+           array_push($closest_events,$event);
+           $i += 1;
+         }
+       }
+       
+       $events = $closest_events;
+
+       $now2 = new DateTime('now');
+       $tommorow = $now2->modify('+1 day');
+       $diffs = [];
+       foreach($events as $event){
+       if($event->getAnniversary()){
+         $year = (int) $event->getDate()->format('Y');
+         $yearDiff = 2017 - $year;
+         $event->setDate($event->getDate()->modify('+'. $yearDiff .' years'));
+       }
+         $diff = ltrim($now->diff($event->getDate())->format('%R%a'),"+");
+         if($diff == "0"){
+           array_push($diffs, $this->get('translator')->trans('jest dziś'));
+         }
+         else if($diff == "1"){
+            $msg = $this->get('translator')->trans('będzie jutro');
+            array_push($diffs,$msg);
+         }
+         else if($now<$event->getDate()){
+           $msg = $this->get('translator')->trans('będzie za') . " " . $diff . " " . $this->get('translator')->trans('dni');
+           array_push($diffs,$msg);
+         }else{
+           array_push($diffs, $this->get('translator')->trans('już było'));
+         }
+       }
+       
+       #print_r($diffs);
+
+       return $this->render('default/index.html.twig', array(
+           'events' => $events,
+           'diffs' => $diffs,
+           'base_dir' => realpath($this->getParameter('kernel.root_dir').'/..').DIRECTORY_SEPARATOR,
+       ));
+        //return $this->render('default/index.html.twig', [
+        //    'base_dir' => realpath($this->getParameter('kernel.root_dir').'/..').DIRECTORY_SEPARATOR,
+        //]);
     }
 
 

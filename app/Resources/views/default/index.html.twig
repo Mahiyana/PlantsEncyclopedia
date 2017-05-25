@@ -2,6 +2,17 @@
 
 {% block body %}
         <div id="container">
-        <p>Comming Soon!</p>
+ <table class="table">
+ <tr>
+{% for event in events %}
+  <td>
+    <table class="table">
+      <tr><td>{{ event.name }}</td></tr>
+      <tr><td>{{ diffs[loop.index - 1] }}</td></tr>
+    </table>
+  </td>
+{% endfor %}
+</tr>
+</table>
         </div>
 {% endblock %}

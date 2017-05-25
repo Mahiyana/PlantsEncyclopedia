@@ -37,7 +37,6 @@ class CallendarController extends Controller
        $repository = $this->getDoctrine()->getManager()->getRepository('AppBundle:Event');
        $events = $repository->findAll(array(), array('date.getTimestamp()' => 'DSC')); 
      
-       print_r(count($events));
        uasort($events, function($a, $b){
          if ($a->getTimestamp() == $b->getTimestamp()) {
            return 0;

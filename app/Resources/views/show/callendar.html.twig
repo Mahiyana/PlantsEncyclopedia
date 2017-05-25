@@ -8,6 +8,7 @@
   <tr>
     <th>{% trans %}Nazwa{% endtrans %}</th>
     <th>{{ event.name }} </a>
+    <th>{{ event.getTimestamp }} </a>
     <th>{{ diffs[loop.index - 1] }} </th>
   </tr>
 {% endfor %}
