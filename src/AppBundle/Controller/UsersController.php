@@ -12,6 +12,7 @@ use AppBundle\Entity\Role;
 use AppBundle\Entity\Category;
 use AppBundle\Entity\Article;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
@@ -73,48 +74,48 @@ class UsersController extends Controller
        $user_id = $request->attributes->get('user_id');
        $user = $repository->findOneById($user_id);
        $user_roles = $user->getRoles();
-       $roles_array = [in_array('ROLE_GALLERY_ADD', $user_roles), in_array('ROLE_ARTICLE_ADD', $user_roles), in_array('ROLE_CALLENDAR_ADD', $user_roles), in_array('ROLE_USER_ADD', $user_roles)     ];
-       print_r($roles_array);
+       $roles_array = [];
+       $name_roles_array = ['ROLE_GALLERY_ADD' => 'Uprawnienia do edytowania galerii', 
+                       'ROLE_ARTICLE_ADD' => 'Uprawnienia do edytowania artykułów',
+                       'ROLE_CALLENDAR_ADD' => 'Uprawnienia do edytowania kalendarium',
+                        'ROLE_USER_ADD' => 'Uprawnienia do edytowania użytkowników', 
+                      ];
+       foreach($name_roles_array as $role => $_) {
+        $roles_array[$role] = in_array($role, $user_roles); 
+       }
        return $this->render('show/user.html.twig', array(
            'user' => $user,
            'roles' => $roles_array,
+           'name_roles' => $name_roles_array,
        ));
  
     }
 
     /**
-     * @Route("/change_gallery_role/{user_id}", requirements={"id" = "\d+"})
+     * @Route("/change_role/{user_id}/{role_name}", requirements={"id" = "\d+"})
      */
 
     public function changeGalleryRole(Request $request)
     {
        $repository = $this->getDoctrine()->getRepository('AppBundle:User');
        $user_id = $request->attributes->get('user_id');
+       $role_name = $request->attributes->get('role_name');
        $user = $repository->findOneById($user_id);
        $user_roles = $user->getRoles();
-       if(in_array('ROLE_GALLERY_ADD', $user_roles)){
-        $role = new Role("ROLE_GALLERY_ADD");
+       if(in_array($role_name, $user_roles)){
+        $role = new Role($role_name);
         $user->removeRole($role);
+        $response = new JsonResponse(array('role' => false));      
        }else{
-        $role = new Role("ROLE_GALLERY_ADD");
+        $role = new Role($role_name);
         $user->addRole($role);
+        $response = new JsonResponse(array('role' => true));      
        }
         $em = $this->getDoctrine()->getManager();
         $em->persist($user);
         $em->flush();
        
-       $repository = $this->getDoctrine()->getRepository('AppBundle:User');
-       $user_id = $request->attributes->get('user_id');
-       $user = $repository->findOneById($user_id);
-       $user_roles = $user->getRoles();
-
-$roles_array = [in_array('ROLE_GALLERY_ADD', $user_roles), in_array('ROLE_ARTICLE_ADD', $user_roles), in_array('ROLE_CALLENDAR_ADD', $user_roles), in_array('ROLE_USER_ADD', $user_roles)     ];
-      
-      return $this->render('show/user.html.twig', array(
-           'user' => $user,
-           'roles' => $roles_array,
-       ));
- 
+      return $response;
     }
 
     /**
