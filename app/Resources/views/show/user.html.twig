@@ -31,7 +31,7 @@ $.post( "/change_role/" + user_id + "/" + role_name , function( data ) {
       <table class="table">
       {% for role_name, role_description in name_roles %}
         <tr>
-          <td>{{ role_descriptin }}</td>
+          <td>{{ role_description }}</td>
             {% if roles[role_name] %} 
               <td id='{{role_name}}_status'>{% trans %}Posiada{% endtrans %}</td>
                 {% if is_granted('ROLE_USER_ADD') %}<td ><a id='{{ role_name }}_button' href='#' onclick='role_function("{{ role_name }}",{{ user.ID }})'>Zabierz</a></td>{% endif %}
