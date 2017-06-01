@@ -70,15 +70,158 @@ class UsersController extends Controller
     public function showUser(Request $request)
     {
        $repository = $this->getDoctrine()->getRepository('AppBundle:User');
-       //$request = $this->getRequest();
        $user_id = $request->attributes->get('user_id');
        $user = $repository->findOneById($user_id);
-      
+       $user_roles = $user->getRoles();
+       $roles_array = [in_array('ROLE_GALLERY_ADD', $user_roles), in_array('ROLE_ARTICLE_ADD', $user_roles), in_array('ROLE_CALLENDAR_ADD', $user_roles), in_array('ROLE_USER_ADD', $user_roles)     ];
+       print_r($roles_array);
        return $this->render('show/user.html.twig', array(
            'user' => $user,
+           'roles' => $roles_array,
+       ));
+ 
+    }
+
+    /**
+     * @Route("/change_gallery_role/{user_id}", requirements={"id" = "\d+"})
+     */
+
+    public function changeGalleryRole(Request $request)
+    {
+       $repository = $this->getDoctrine()->getRepository('AppBundle:User');
+       $user_id = $request->attributes->get('user_id');
+       $user = $repository->findOneById($user_id);
+       $user_roles = $user->getRoles();
+       if(in_array('ROLE_GALLERY_ADD', $user_roles)){
+        $role = new Role("ROLE_GALLERY_ADD");
+        $user->removeRole($role);
+       }else{
+        $role = new Role("ROLE_GALLERY_ADD");
+        $user->addRole($role);
+       }
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($user);
+        $em->flush();
+       
+       $repository = $this->getDoctrine()->getRepository('AppBundle:User');
+       $user_id = $request->attributes->get('user_id');
+       $user = $repository->findOneById($user_id);
+       $user_roles = $user->getRoles();
+
+$roles_array = [in_array('ROLE_GALLERY_ADD', $user_roles), in_array('ROLE_ARTICLE_ADD', $user_roles), in_array('ROLE_CALLENDAR_ADD', $user_roles), in_array('ROLE_USER_ADD', $user_roles)     ];
+      
+      return $this->render('show/user.html.twig', array(
+           'user' => $user,
+           'roles' => $roles_array,
+       ));
+ 
+    }
+
+    /**
+     * @Route("/change_article_role/{user_id}", requirements={"id" = "\d+"})
+     */
+
+     public function changeArticleRole(Request $request)
+    {
+       $repository = $this->getDoctrine()->getRepository('AppBundle:User');
+       $user_id = $request->attributes->get('user_id');
+       $user = $repository->findOneById($user_id);
+       $user_roles = $user->getRoles();
+       if(in_array('ROLE_ARTICLE_ADD', $user_roles)){
+        $role = new Role("ROLE_ARTICLE_ADD");
+        $user->removeRole($role);
+       }else{
+        $role = new Role("ROLE_ARTICLE_ADD");
+        $user->addRole($role);
+       }
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($user);
+        $em->flush();
+       
+       $repository = $this->getDoctrine()->getRepository('AppBundle:User');
+       $user_id = $request->attributes->get('user_id');
+       $user = $repository->findOneById($user_id);
+       $user_roles = $user->getRoles();
+
+$roles_array = [in_array('ROLE_GALLERY_ADD', $user_roles), in_array('ROLE_ARTICLE_ADD', $user_roles), in_array('ROLE_CALLENDAR_ADD', $user_roles), in_array('ROLE_USER_ADD', $user_roles)     ];
+      
+      return $this->render('show/user.html.twig', array(
+           'user' => $user,
+           'roles' => $roles_array,
+       ));
+ 
+    }
+
+    /**
+     * @Route("/change_callendar_role/{user_id}", requirements={"id" = "\d+"})
+     */
+
+    public function changeCallendarRole(Request $request)
+    {
+       $repository = $this->getDoctrine()->getRepository('AppBundle:User');
+       $user_id = $request->attributes->get('user_id');
+       $user = $repository->findOneById($user_id);
+       $user_roles = $user->getRoles();
+       if(in_array('ROLE_CALLENDAR_ADD', $user_roles)){
+        $role = new Role("ROLE_CALLENDAR_ADD");
+        $user->removeRole($role);
+       }else{
+        $role = new Role("ROLE_CALLENDAR_ADD");
+        $user->addRole($role);
+       }
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($user);
+        $em->flush();
+       
+       $repository = $this->getDoctrine()->getRepository('AppBundle:User');
+       $user_id = $request->attributes->get('user_id');
+       $user = $repository->findOneById($user_id);
+       $user_roles = $user->getRoles();
+
+$roles_array = [in_array('ROLE_GALLERY_ADD', $user_roles), in_array('ROLE_ARTICLE_ADD', $user_roles), in_array('ROLE_CALLENDAR_ADD', $user_roles), in_array('ROLE_USER_ADD', $user_roles)     ];
+      
+      return $this->render('show/user.html.twig', array(
+           'user' => $user,
+           'roles' => $roles_array,
+       ));
+ 
+    }
+
+    /**
+     * @Route("/change_user_role/{user_id}", requirements={"id" = "\d+"})
+     */
+
+    public function changeUserRole(Request $request)
+    {
+       $repository = $this->getDoctrine()->getRepository('AppBundle:User');
+       $user_id = $request->attributes->get('user_id');
+       $user = $repository->findOneById($user_id);
+       $user_roles = $user->getRoles();
+       if(in_array('ROLE_USER_ADD', $user_roles)){
+        $role = new Role("ROLE_USER_ADD");
+        $user->removeRole($role);
+       }else{
+        $role = new Role("ROLE_USER_ADD");
+        $user->addRole($role);
+       }
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($user);
+        $em->flush();
+       
+       $repository = $this->getDoctrine()->getRepository('AppBundle:User');
+       $user_id = $request->attributes->get('user_id');
+       $user = $repository->findOneById($user_id);
+       $user_roles = $user->getRoles();
+
+$roles_array = [in_array('ROLE_GALLERY_ADD', $user_roles), in_array('ROLE_ARTICLE_ADD', $user_roles), in_array('ROLE_CALLENDAR_ADD', $user_roles), in_array('ROLE_USER_ADD', $user_roles)     ];
+      
+      return $this->render('show/user.html.twig', array(
+           'user' => $user,
+           'roles' => $roles_array,
        ));
  
     }
 
 
-}
+  
+ }

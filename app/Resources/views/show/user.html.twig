@@ -14,11 +14,48 @@
   <tr>
     <th>{% trans %}Role{% endtrans %} </th>
     <th> 
-      <ul>
-         {% for role in user.roles %}
-         <li> {{ role }} </li>
-        {% endfor %}
-      </ul>
+      <table class="table">
+        <tr>
+          <td>{% trans %}Uprawnienia do edytowania galerii{% endtrans %}</td>
+            {% if roles[0] %} 
+              <td>{% trans %}Posiada{% endtrans %}</td>
+              <td><a href= '/change_gallery_role/{{ user.ID }}'>Zabierz</a></td>
+            {% else %} 
+              <td>{% trans %}Nie posiada{% endtrans %}</td>
+              <td><a href= '/change_gallery_role/{{ user.ID }}'>Dodaj</a></td>
+            {% endif %}
+        <tr>
+        <tr>
+          <td>{% trans %}Uprawnienia do edytowania artykułów{% endtrans %}</td>
+          {% if roles[1] %} 
+              <td>{% trans %}Posiada{% endtrans %}</td>
+              <td><a href= '/change_article_role/{{ user.ID }}'>Zabierz</a></td>
+            {% else %} 
+              <td>{% trans %}Nie posiada{% endtrans %}</td>
+              <td><a href= '/change_article_role/{{ user.ID }}'>Dodaj</a></td>
+            {% endif %}
+        <tr>
+        <tr>
+          <td>{% trans %}Uprawnienia do edytowania kalendarium{% endtrans %}</td>
+          {% if roles[2] %} 
+              <td>{% trans %}Posiada{% endtrans %}</td>
+              <td><a href= '/change_callendar_role/{{ user.ID }}'>Zabierz</a></td>
+            {% else %} 
+              <td>{% trans %}Nie posiada{% endtrans %}</td>
+              <td><a href= '/change_callendar_role/{{ user.ID }}'>Dodaj</a></td>
+            {% endif %}
+        <tr>
+        <tr>
+          <td>{% trans %}Uprawnienia do edytowania użytkowników{% endtrans %}</td>
+           {% if roles[3] %} 
+              <td>{% trans %}Posiada{% endtrans %}</td>
+              <td><a href= '/change_user_role/{{ user.ID }}'>Dodaj</a></td>
+            {% else %} 
+              <td>{% trans %}Nie posiada{% endtrans %}</td>
+              <td><a href= '/change_user_role/{{ user.ID }}'>Dodaj</a></td>
+            {% endif %}
+        <tr>
+      </table>
     </th>
   </tr>
 
