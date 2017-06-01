@@ -13,5 +13,7 @@
 <br/>
 <a href='/add/category'>{% trans %}Dodaj nową kategorię{% endtrans %}</a>
 <br/>
-<a href='/add/article'>{% trans %}Dodaj nowy artykuł{% endtrans %}</a></br>
+
+
+{% if is_granted('ROLE_ADMIN') %}<a href='/add/article'>{% trans %}Dodaj nowy artykuł{% endtrans %}</a></br>{% endif %}
 {% endblock %}

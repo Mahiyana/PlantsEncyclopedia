@@ -19,40 +19,40 @@
           <td>{% trans %}Uprawnienia do edytowania galerii{% endtrans %}</td>
             {% if roles[0] %} 
               <td>{% trans %}Posiada{% endtrans %}</td>
-              <td><a href= '/change_gallery_role/{{ user.ID }}'>Zabierz</a></td>
+                {% if is_granted('ROLE_USER_ADD') %}<td><a href= '/change_gallery_role/{{ user.ID }}'>Zabierz</a></td>{% endif %}
             {% else %} 
               <td>{% trans %}Nie posiada{% endtrans %}</td>
-              <td><a href= '/change_gallery_role/{{ user.ID }}'>Dodaj</a></td>
+               {% if is_granted('ROLE_USER_ADD') %}<td><a href= '/change_gallery_role/{{ user.ID }}'>Dodaj</a></td>{% endif %}
             {% endif %}
         <tr>
         <tr>
           <td>{% trans %}Uprawnienia do edytowania artykułów{% endtrans %}</td>
           {% if roles[1] %} 
               <td>{% trans %}Posiada{% endtrans %}</td>
-              <td><a href= '/change_article_role/{{ user.ID }}'>Zabierz</a></td>
+              {% if is_granted('ROLE_USER_ADD') %} <td><a href= '/change_article_role/{{ user.ID }}'>Zabierz</a></td>{% endif %}
             {% else %} 
               <td>{% trans %}Nie posiada{% endtrans %}</td>
-              <td><a href= '/change_article_role/{{ user.ID }}'>Dodaj</a></td>
+               {% if is_granted('ROLE_USER_ADD') %}<td><a href= '/change_article_role/{{ user.ID }}'>Dodaj</a></td>{% endif %}
             {% endif %}
         <tr>
         <tr>
           <td>{% trans %}Uprawnienia do edytowania kalendarium{% endtrans %}</td>
           {% if roles[2] %} 
               <td>{% trans %}Posiada{% endtrans %}</td>
-              <td><a href= '/change_callendar_role/{{ user.ID }}'>Zabierz</a></td>
+              {% if is_granted('ROLE_USER_ADD') %}<td><a href= '/change_callendar_role/{{ user.ID }}'>Zabierz</a></td>{% endif %}
             {% else %} 
               <td>{% trans %}Nie posiada{% endtrans %}</td>
-              <td><a href= '/change_callendar_role/{{ user.ID }}'>Dodaj</a></td>
+              {% if is_granted('ROLE_USER_ADD') %} <td><a href= '/change_callendar_role/{{ user.ID }}'>Dodaj</a></td>{% endif %}
             {% endif %}
         <tr>
         <tr>
           <td>{% trans %}Uprawnienia do edytowania użytkowników{% endtrans %}</td>
            {% if roles[3] %} 
               <td>{% trans %}Posiada{% endtrans %}</td>
-              <td><a href= '/change_user_role/{{ user.ID }}'>Dodaj</a></td>
+              {% if is_granted('ROLE_USER_ADD') %}<td><a href= '/change_user_role/{{ user.ID }}'>Zabierz</a></td>{% endif %}
             {% else %} 
               <td>{% trans %}Nie posiada{% endtrans %}</td>
-              <td><a href= '/change_user_role/{{ user.ID }}'>Dodaj</a></td>
+              {% if is_granted('ROLE_USER_ADD') %} <td><a href= '/change_user_role/{{ user.ID }}'>Dodaj</a></td>{% endif %}
             {% endif %}
         <tr>
       </table>

@@ -16,5 +16,7 @@
 {% endfor %}
 </table>
 
-<a href='/add/gallery'>{% trans %}Dodaj nową galerię{% endtrans %}</a>
+
+
+{% if is_granted('ROLE_GALLERY_ADD') %}<a href='/add/gallery'>{% trans %}Dodaj nową galerię{% endtrans %}</a>{% endif %}
 {% endblock %}

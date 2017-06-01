@@ -14,5 +14,7 @@
 {% endfor %}
 </table>
 
-<a href='/add/event'>{% trans %}Dodaj nowe wydarzenie{% endtrans %}</a>
+
+
+{% if is_granted('ROLE_CALLENDAR_ADD') %}<a href='/add/event'>{% trans %}Dodaj nowe wydarzenie{% endtrans %}</a>{% endif %}
 {% endblock %}

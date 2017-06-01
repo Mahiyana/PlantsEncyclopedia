@@ -36,6 +36,8 @@ security:
         - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/admin/, role: ROLE_ADMIN }
         - { path: ^/add/gallery, role: ROLE_GALLERY_ADD }
+        - { path: ^/add/article, role: ROLE_ARTICLE_ADD }
+        - { path: ^/add/event, role: ROLE_CALENDAR_ADD }
 
     # anonymous: ~
             # activate different ways to authenticate
