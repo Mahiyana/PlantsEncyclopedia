@@ -44,8 +44,6 @@ class CallendarController extends Controller
          return ($a->getTimestamp()< $b->getTimestamp()) ? -1 : 1;
        }); 
        //$events = usort($events, 'self::cmp');
-
-       print_r(count($events));
        
        $now = new DateTime('now');
        $now2 = new DateTime('now');
