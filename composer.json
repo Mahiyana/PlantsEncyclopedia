@@ -31,7 +31,8 @@
         "twig/twig": "^1.0||^2.0",
         "friendsofsymfony/user-bundle": "~2.0",
         "liip/imagine-bundle": "^1.7",
-        "egeloen/ckeditor-bundle": "^5.0"
+        "egeloen/ckeditor-bundle": "^5.0",
+        "phpunit/phpunit-selenium": "^3.0"
     },
     "require-dev": {
         "sensio/generator-bundle": "^3.0",
